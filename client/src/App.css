@@ -1,0 +1,149 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.input-section {
+  margin-bottom: 2rem;
+}
+
+.email-input {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  resize: vertical;
+}
+
+.analyze-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.analyze-button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.analyze-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #dc3545;
+  padding: 1rem;
+  background-color: #f8d7da;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.results-section {
+  margin-top: 2rem;
+}
+
+.overall-score {
+  background-color: #d4edda;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.overall-score h2 {
+  color: #155724;
+  margin: 0;
+}
+
+.result-block {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.result-block h3 {
+  color: #333;
+  margin-top: 0;
+}
+
+.response-text {
+  line-height: 1.6;
+  color: #555;
+  white-space: pre-wrap;
+}
+
+.metrics-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.metric {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #007bff;
+}
+
+.metric h4 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.metric p {
+  color: #666;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.contract-section {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.contract-section h3 {
+  color: #333;
+  margin-top: 0;
+}
+
+.contract-details {
+  margin-top: 1rem;
+}
+
+.contract-details p {
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.contract-details ul {
+  color: #555;
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.contract-details li {
+  margin-bottom: 0.25rem;
+}

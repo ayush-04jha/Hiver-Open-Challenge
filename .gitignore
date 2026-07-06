@@ -1,1 +1,11 @@
 /context.md
+node_modules/
+.env
+*.log
+.DS_Store
+server/results/*.json
+!server/results/.gitkeep
+__pycache__/
+*.pyc
+venv/
+.venv/

@@ -1,0 +1,379 @@
+{
+  "examples": [
+    {
+      "id": "billing_01",
+      "category": "billing",
+      "email": "I was charged twice for my subscription. Please refund the duplicate payment.",
+      "groundTruth": {
+        "intent": "duplicate_charge",
+        "requiredPoints": [
+          "acknowledge the duplicate charge",
+          "acknowledge the refund request",
+          "provide a safe next step"
+        ],
+        "forbiddenClaims": [
+          "claim the refund has already been processed",
+          "invent refund timelines",
+          "invent company policies"
+        ]
+      }
+    },
+    {
+      "id": "billing_02",
+      "category": "billing",
+      "email": "I see a charge on my statement that I don't recognize. It's for $49.99 and I never authorized this transaction.",
+      "groundTruth": {
+        "intent": "unauthorized_charge",
+        "requiredPoints": [
+          "acknowledge the unrecognized charge",
+          "offer to investigate the transaction",
+          "provide a safe next step"
+        ],
+        "forbiddenClaims": [
+          "claim the charge was already investigated",
+          "invent what the charge was for",
+          "invent refund timelines"
+        ]
+      }
+    },
+    {
+      "id": "billing_03",
+      "category": "billing",
+      "email": "I need an invoice for my recent purchase. The transaction was made on June 15th for $129.99.",
+      "groundTruth": {
+        "intent": "invoice_request",
+        "requiredPoints": [
+          "acknowledge the invoice request",
+          "provide information on how to get the invoice",
+          "offer alternative ways to receive the invoice"
+        ],
+        "forbiddenClaims": [
+          "claim the invoice was already sent",
+          "invent invoice delivery timelines",
+          "invent company policies about invoices"
+        ]
+      }
+    },
+    {
+      "id": "billing_04",
+      "category": "billing",
+      "email": "I was promised a refund two weeks ago but haven't received it yet. When can I expect my money back?",
+      "groundTruth": {
+        "intent": "refund_status",
+        "requiredPoints": [
+          "acknowledge the delay in refund",
+          "offer to check on refund status",
+          "provide a safe next step"
+        ],
+        "forbiddenClaims": [
+          "claim the refund was already processed",
+          "invent specific refund timelines",
+          "invent company policies about refunds"
+        ]
+      }
+    },
+    {
+      "id": "account_01",
+      "category": "account",
+      "email": "I can't log into my account. I'm entering the correct password but it says 'Invalid credentials'.",
+      "groundTruth": {
+        "intent": "login_issue",
+        "requiredPoints": [
+          "acknowledge the login problem",
+          "offer password reset option",
+          "provide troubleshooting steps",
+          "provide a safe next step"
+        ],
+        "forbiddenClaims": [
+          "claim the account was already investigated",
+          "invent what caused the issue",
+          "invent account status"
+        ]
+      }
+    },
+    {
+      "id": "account_02",
+      "category": "account",
+      "email": "I need to change the email address associated with my account. The current email is old and I no longer have access to it.",
+      "groundTruth": {
+        "intent": "email_change",
+        "requiredPoints": [
+          "acknowledge the email change request",
+          "explain verification process for email change",
+          "provide a safe next step"
+        ],
+        "forbiddenClaims": [
+          "claim the email was already changed",
+          "invent verification timelines",
+          "invent company policies about email changes"
+        ]
+      }
+    },
+    {
+      "id": "account_03",
+      "category": "account",
+      "email": "I want to delete my account permanently. Please remove all my data from your system.",
+      "groundTruth": {
+        "intent": "account_deletion",
+        "requiredPoints": [
+          "acknowledge the account deletion request",
+          "explain the deletion process",
+          "inform about data retention policies",
+          "provide a safe next step"
+        ],
+        "forbiddenClaims": [
+          "claim the account was already deleted",
+          "invent deletion timelines",
+          "invent what data will be kept"
+        ]
+      }
+    },
+    {
+      "id": "account_04",
+      "category": "account",
+      "email": "Someone else is using my account. I see activity from locations I've never visited. Please help me secure my account.",
+      "groundTruth": {
+        "intent": "account_security",
+        "requiredPoints": [
+          "acknowledge the security concern",
+          "provide immediate security steps",
+          "offer to investigate unauthorized access",
+          "provide a safe next step"
+        ],
+        "forbiddenClaims": [
+          "claim the account was already secured",
+          "invent what security measures were taken",
+          "invent investigation timelines"
+        ]
+      }
+    },
+    {
+      "id": "technical_01",
+      "category": "technical",
+      "email": "The app keeps crashing every time I try to open the settings menu. This started happening after the last update.",
+      "groundTruth": {
+        "intent": "app_crash",
+        "requiredPoints": [
+          "acknowledge the app crash issue",
+          "offer troubleshooting steps",
+          "request additional information if needed",
+          "provide a safe next step"
+        ],
+        "forbiddenClaims": [
+          "claim the crash was already fixed",
+          "invent what caused the crash",
+          "invent fix timelines"
+        ]
+      }
+    },
+    {
+      "id": "technical_02",
+      "category": "technical",
+      "email": "I'm getting a 500 error when I try to upload files. The upload gets to about 80% and then fails.",
+      "groundTruth": {
+        "intent": "upload_error",
+        "requiredPoints": [
+          "acknowledge the upload error",
+          "offer troubleshooting suggestions",
+          "request additional details if needed",
+          "provide a safe next step"
+        ],
+        "forbiddenClaims": [
+          "claim the upload issue was already resolved",
+          "invent what caused the error",
+          "invent fix timelines"
+        ]
+      }
+    },
+    {
+      "id": "technical_03",
+      "category": "technical",
+      "email": "The feature that used to be in the main menu is missing after the update. Where did the dark mode setting go?",
+      "groundTruth": {
+        "intent": "missing_feature",
+        "requiredPoints": [
+          "acknowledge the missing feature concern",
+          "provide information about the feature location",
+          "offer alternative access if applicable",
+          "provide a safe next step"
+        ],
+        "forbiddenClaims": [
+          "claim the feature was already restored",
+          "invent why the feature was moved",
+          "invent when it will be fixed"
+        ]
+      }
+    },
+    {
+      "id": "technical_04",
+      "category": "technical",
+      "email": "My data isn't syncing across devices. I updated on my phone but the changes don't appear on my computer.",
+      "groundTruth": {
+        "intent": "sync_issue",
+        "requiredPoints": [
+          "acknowledge the sync problem",
+          "offer troubleshooting steps",
+          "request additional information if needed",
+          "provide a safe next step"
+        ],
+        "forbiddenClaims": [
+          "claim the sync was already fixed",
+          "invent what caused the sync issue",
+          "invent fix timelines"
+        ]
+      }
+    },
+    {
+      "id": "subscription_01",
+      "category": "subscription",
+      "email": "I want to cancel my subscription. I've been charged for this month but I don't want to be charged again.",
+      "groundTruth": {
+        "intent": "subscription_cancellation",
+        "requiredPoints": [
+          "acknowledge the cancellation request",
+          "explain the cancellation process",
+          "inform about billing period",
+          "provide a safe next step"
+        ],
+        "forbiddenClaims": [
+          "claim the subscription was already cancelled",
+          "invent refund policies",
+          "invent cancellation timelines"
+        ]
+      }
+    },
+    {
+      "id": "subscription_02",
+      "category": "subscription",
+      "email": "I want to upgrade from the basic plan to the premium plan. How do I do this and will I be charged immediately?",
+      "groundTruth": {
+        "intent": "plan_upgrade",
+        "requiredPoints": [
+          "acknowledge the upgrade request",
+          "explain the upgrade process",
+          "provide information about pricing and timing",
+          "provide a safe next step"
+        ],
+        "forbiddenClaims": [
+          "claim the upgrade was already processed",
+          "invent specific pricing not provided",
+          "invent upgrade timelines"
+        ]
+      }
+    },
+    {
+      "id": "subscription_03",
+      "category": "subscription",
+      "email": "I'm being charged for a subscription I cancelled months ago. Please stop these charges and refund me.",
+      "groundTruth": {
+        "intent": "unexpected_charge",
+        "requiredPoints": [
+          "acknowledge the unexpected charge",
+          "offer to investigate the subscription status",
+          "provide a safe next step"
+        ],
+        "forbiddenClaims": [
+          "claim the charge was already refunded",
+          "invent what caused the continued charges",
+          "invent refund timelines"
+        ]
+      }
+    },
+    {
+      "id": "subscription_04",
+      "category": "subscription",
+      "email": "I can't access the premium features even though I'm subscribed to the premium plan. It says I'm on the basic plan.",
+      "groundTruth": {
+        "intent": "subscription_access",
+        "requiredPoints": [
+          "acknowledge the subscription access issue",
+          "offer to investigate the subscription status",
+          "provide troubleshooting steps",
+          "provide a safe next step"
+        ],
+        "forbiddenClaims": [
+          "claim the access was already restored",
+          "invent what caused the access issue",
+          "invent fix timelines"
+        ]
+      }
+    },
+    {
+      "id": "complaint_01",
+      "category": "complaint",
+      "email": "I've been waiting for customer support for 3 days. My ticket number is #12345 and nobody has responded yet.",
+      "groundTruth": {
+        "intent": "support_delay",
+        "requiredPoints": [
+          "acknowledge the support delay",
+          "apologize for the wait",
+          "offer to escalate the ticket",
+          "provide a safe next step"
+        ],
+        "forbiddenClaims": [
+          "claim the ticket was already resolved",
+          "invent what caused the delay",
+          "invent response timelines"
+        ]
+      }
+    },
+    {
+      "id": "complaint_02",
+      "category": "complaint",
+      "email": "Your service has been down for hours and I can't do my work. This is unacceptable and I need compensation for the downtime.",
+      "groundTruth": {
+        "intent": "service_outage",
+        "requiredPoints": [
+          "acknowledge the service outage",
+          "apologize for the disruption",
+          "provide status update if available",
+          "provide a safe next step"
+        ],
+        "forbiddenClaims": [
+          "claim the service was already restored",
+          "invent what caused the outage",
+          "invent compensation policies",
+          "invent restoration timelines"
+        ]
+      }
+    },
+    {
+      "id": "complaint_03",
+      "category": "complaint",
+      "email": "I'm very disappointed with the quality of service lately. The features don't work as advertised and support is unresponsive.",
+      "groundTruth": {
+        "intent": "service_quality",
+        "requiredPoints": [
+          "acknowledge the quality concerns",
+          "express empathy for the frustration",
+          "offer to address specific issues",
+          "provide a safe next step"
+        ],
+        "forbiddenClaims": [
+          "claim the quality issues were already fixed",
+          "invent what improvements were made",
+          "invent timelines for improvements"
+        ]
+      }
+    },
+    {
+      "id": "complaint_04",
+      "category": "complaint",
+      "email": "I was promised a discount when I signed up but never received it. The promotion was for 20% off the first year.",
+      "groundTruth": {
+        "intent": "missing_discount",
+        "requiredPoints": [
+          "acknowledge the missing discount",
+          "offer to investigate the promotion",
+          "request additional details if needed",
+          "provide a safe next step"
+        ],
+        "forbiddenClaims": [
+          "claim the discount was already applied",
+          "invent what went wrong with the discount",
+          "invent refund timelines"
+        ]
+      }
+    }
+  ]
+}
