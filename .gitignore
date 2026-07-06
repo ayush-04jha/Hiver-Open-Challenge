@@ -7,5 +7,7 @@ server/results/*.json
 !server/results/.gitkeep
 __pycache__/
 *.pyc
-venv/
+*.pyo
+*.egg-info/
 .venv/
+server/ai_services/venv/
