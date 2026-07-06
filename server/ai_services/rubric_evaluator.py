@@ -3,21 +3,14 @@ import sys
 import json
 import os
 from dotenv import load_dotenv
-import google.generativeai as genai
+from groq import Groq
 
 # Load .env from parent directory
 load_dotenv(os.path.join(os.path.dirname(__file__), '..', '.env'))
 
-# Initialize Gemini
-genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
-model = genai.GenerativeModel(
-    os.getenv('EVALUATOR_MODEL', 'gemini-2.5-flash'),
-    generation_config={
-        "temperature": 0.1,
-        "top_p": 0.1,
-        "max_output_tokens": 2048,
-    }
-)
+# Initialize Groq
+client = Groq(api_key=os.getenv('GROQ_API_KEY'))
+MODEL_NAME = 'llama-3.1-8b-instant'  # Using Groq model for evaluation
 
 EVALUATOR_PROMPT = """
 You are an impartial evaluator of customer support responses. Your task is to judge the quality of a generated response using fixed criteria.
@@ -98,8 +91,24 @@ def evaluate_response(email, contract, response):
     prompt = prompt.replace('{{', '{').replace('}}', '}')
     
     try:
-        result = model.generate_content(prompt)
-        result_text = result.text.strip()
+        completion = client.chat.completions.create(
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are a JSON API. Always respond with valid JSON only, no additional text."
+                },
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            model=MODEL_NAME,
+            temperature=0.1,
+            max_tokens=2048,
+            response_format={"type": "json_object"}
+        )
+        
+        result_text = completion.choices[0].message.content.strip()
         
         # Try to extract JSON from response
         if '```json' in result_text:
@@ -111,6 +120,7 @@ def evaluate_response(email, contract, response):
         return evaluation
     except Exception as e:
         print(f"Error in evaluation: {e}", file=sys.stderr)
+        print(f"Raw response: {result_text if 'result_text' in locals() else 'No response text'}", file=sys.stderr)
         raise
 
 if __name__ == "__main__":

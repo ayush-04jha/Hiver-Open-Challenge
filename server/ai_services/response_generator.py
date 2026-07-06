@@ -10,6 +10,7 @@ load_dotenv(os.path.join(os.path.dirname(__file__), '..', '.env'))
 
 # Initialize Groq
 client = Groq(api_key=os.getenv('GROQ_API_KEY'))
+MODEL_NAME = 'llama-3.3-70b-versatile'  # Hardcoded to avoid environment variable issues
 
 GENERATOR_PROMPT = """
 You are a professional customer support representative. Your task is to write a helpful, professional, and grounded response to a customer email.
@@ -49,7 +50,7 @@ def generate_response(email, contract):
                     "content": prompt
                 }
             ],
-            model=os.getenv('GENERATOR_MODEL', 'llama3-70b-8192'),
+            model=MODEL_NAME,
             temperature=0.3,
             max_tokens=2048,
         )

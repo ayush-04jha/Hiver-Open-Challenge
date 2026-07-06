@@ -3,21 +3,14 @@ import sys
 import json
 import os
 from dotenv import load_dotenv
-import google.generativeai as genai
+from groq import Groq
 
 # Load .env from parent directory
 load_dotenv(os.path.join(os.path.dirname(__file__), '..', '.env'))
 
-# Initialize Gemini
-genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
-model = genai.GenerativeModel(
-    os.getenv('EXTRACTOR_MODEL', 'gemini-2.5-flash'),
-    generation_config={
-        "temperature": 0.1,
-        "top_p": 0.1,
-        "max_output_tokens": 2048,
-    }
-)
+# Initialize Groq
+client = Groq(api_key=os.getenv('GROQ_API_KEY'))
+MODEL_NAME = 'llama-3.1-8b-instant'  # Using Groq model for contract extraction
 
 EXTRACTOR_PROMPT = """
 You are a customer support contract extractor. Your task is to analyze a customer email and extract a structured contract that defines requirements for a good response.
@@ -55,8 +48,24 @@ def extract_contract(email):
     prompt = prompt.replace('{{', '{').replace('}}', '}')
     
     try:
-        response = model.generate_content(prompt)
-        result_text = response.text.strip()
+        completion = client.chat.completions.create(
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are a JSON API. Always respond with valid JSON only, no additional text."
+                },
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            model=MODEL_NAME,
+            temperature=0.1,
+            max_tokens=2048,
+            response_format={"type": "json_object"}
+        )
+        
+        result_text = completion.choices[0].message.content.strip()
         
         # Try to extract JSON from response
         if '```json' in result_text:
@@ -68,6 +77,7 @@ def extract_contract(email):
         return contract
     except Exception as e:
         print(f"Error in contract extraction: {e}", file=sys.stderr)
+        print(f"Raw response: {result_text if 'result_text' in locals() else 'No response text'}", file=sys.stderr)
         raise
 
 if __name__ == "__main__":
